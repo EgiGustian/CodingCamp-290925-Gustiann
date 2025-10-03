@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web To Do List</title>
+
+  <!-- css external -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- tailwindcss -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header>
+    <h1 class="font-sans text-3xl font-bold" id="title">Todo List App</h1>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Form Todo -->
+    <section class="mt-4">
+      <form id="myForm"">
+        <input type="text" class="border p-[8px] rounded" id="todo-input" placeholder="Enter your Todo..." required />
+        <input type="date" class="border p-[8px] rounded" id="todo-date" required />
+        <button type="submit" class="bg-blue-500 text-white p-[8px] rounded" onclick="addTodo(event)">
+          Add Todo
+        </button>
+        <ul id="taskList"></ul>
+      </form>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="mt-4">
+      <button class="bg-red-500 text-white p-[8px] rounded" id="hapusSemua" onclick="deleteAllTodo()">
+        Delete All
+      </button>
+      <button class="bg-green-500 text-white p-[8px] rounded" id="completeAllButton" onclick="filterTodos()">
+        Filter
+      </button>`
+    </section>
+
+    <!-- List Todo -->
+    <section class="mt-4">
+      <ul id="todo-list" class="mt-4">
+        <!-- Todo items will be dynamically added here -->
+        <p class="text-center text-gray-500">No todos added yet</p>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Todo List App</p>
+  </footer>
+
+  <!-- js external -->
+  <script src="js/script.js"></script>
+</body>
+
+</html>
