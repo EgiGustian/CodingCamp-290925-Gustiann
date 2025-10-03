@@ -6,54 +6,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Web To Do List</title>
 
-  <!-- css external -->
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/style.css" />
-
-  <!-- tailwindcss -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body>
+<body class="bg-slate-800 min-h-screen text-white">
   <!-- Header Section -->
-  <header>
-    <h1 class="font-sans text-3xl font-bold" id="title">Todo List App</h1>
+  <header class="flex justify-center items-center py-8">
+    <h1 class="text-3xl font-bold">Todo List App</h1>
   </header>
 
   <!-- Main Content -->
-  <main>
+  <main class="main-content max-w-xl mx-auto bg-indigo-700 rounded-lg shadow p-6 mt-8 shadow-xl">
     <!-- Form Todo -->
     <section class="mt-4">
-      <form id="myForm"">
-        <input type="text" class="border p-[8px] rounded" id="todo-input" placeholder="Enter your Todo..." required />
-        <input type="date" class="border p-[8px] rounded" id="todo-date" required />
-        <button type="submit" class="bg-blue-500 text-white p-[8px] rounded" onclick="addTodo(event)">
+      <form id="myForm" class="flex flex-col gap-4">
+        <input type="text" id="todo-input" placeholder="Enter your Todo..." required
+          class="border border-gray-700 rounded px-3 py-2 focus:border-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900 transition bg-indigo-800" />
+        <input type="date" id="todo-date" required
+          class="border border-gray-700 rounded px-3 py-2 focus:border-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900 transition bg-indigo-800" />
+        <button type="submit" class="bg-sky-500 hover:bg-sky-700 text-white font-semibold rounded px-4 py-2 transition"
+          onclick="addTodo(event)">
           Add Todo
         </button>
-        <ul id="taskList"></ul>
       </form>
     </section>
 
     <!-- Action Buttons -->
-    <section class="mt-4">
-      <button class="bg-red-500 text-white p-[8px] rounded" id="hapusSemua" onclick="deleteAllTodo()">
+    <section class="mt-4 flex justify-between items-center">
+      <!-- Delete All Button (Left) -->
+      <button class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded transition" id="DelAllButton"
+        onclick="deleteAllTodo()">
         Delete All
       </button>
-      <button class="bg-green-500 text-white p-[8px] rounded" id="completeAllButton" onclick="filterTodos()">
-        Filter
-      </button>`
+      <!-- Filter Input & Button (Right) -->
+      <div class="flex gap-2 items-center">
+        <label for="calendarInput">Filter by Date:</label>
+        <input type="date" id="calendarInput"
+          class="border border-gray-700 rounded px-3 py-2 focus:border-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900 transition bg-indigo-800" />
+        <button class="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded transition" id="filterButton"
+          onclick="filterTodos()">
+          Filter
+        </button>
+      </div>
     </section>
+
+    <!-- Popup Alert -->
+    <div id="popupAlert" class="hidden fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+      <div class="bg-white w-80 p-6 rounded-lg shadow-xl text-center">
+        <h2 class="text-lg font-semibold text-red-600 mb-2">Validasi Gagal</h2>
+        <p class="text-gray-700 mb-4">Input tidak boleh kosong!</p>
+        <button id="closePopup" class="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700">
+          OK
+        </button>
+      </div>
+    </div>
 
     <!-- List Todo -->
     <section class="mt-4">
-      <ul id="todo-list" class="mt-4">
-        <!-- Todo items will be dynamically added here -->
-        <p class="text-center text-gray-500">No todos added yet</p>
+      <ul id="todo-list" class="mt-4 overflow-auto max-h-96">
+        <p class="text-center text-gray-300 italic">No todos added yet</p>
       </ul>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer>
+  <footer class="text-center py-4 text-gray-300 mt-8">
     <p>&copy; 2025 Todo List App</p>
   </footer>
 
